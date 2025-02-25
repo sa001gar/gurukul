@@ -23,7 +23,7 @@ Remember: Be concise but helpful. No fluff or unnecessary explanations.`;
 
 export async function getChatbotResponse(message: string): Promise<string> {
   try {
-    const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
+    const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
     
     const prompt = `${CHATBOT_PROMPT}
 

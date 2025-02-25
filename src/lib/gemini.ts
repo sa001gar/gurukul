@@ -22,7 +22,7 @@ Provide a detailed analysis in JSON format with the following structure:
   "errors": [
     // List of potential syntax or logic errors, each with a clear explanation
   ],
-  "patterns": [
+  /*"patterns": [
     // List of identified code patterns and their implications
   ],
   "suggestions": [
