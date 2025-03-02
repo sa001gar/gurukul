@@ -9,13 +9,13 @@ interface CodeEditorProps {
 export function CodeEditor({ code, language, onChange }: CodeEditorProps) {
   return (
     <div className="bg-white/80 backdrop-blur-sm rounded-lg shadow-sm overflow-hidden border border-gray-200">
-      <div className="border-b border-gray-200 px-4 py-2 flex items-center">
+      <div className="border-b border-gray-200 px-4 py-2 flex items-center justify-between">
         <div className="flex space-x-2">
           <div className="w-3 h-3 rounded-full bg-red-500"></div>
           <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
           <div className="w-3 h-3 rounded-full bg-green-500"></div>
         </div>
-        <div className="ml-4 text-sm text-gray-600 font-medium">
+        <div className="text-sm text-gray-600 font-medium">
           {language.charAt(0).toUpperCase() + language.slice(1)} Editor
         </div>
       </div>
@@ -28,7 +28,7 @@ export function CodeEditor({ code, language, onChange }: CodeEditorProps) {
           onChange={onChange}
           theme="vs-light"
           options={{
-            minimap: { enabled: false },
+            minimap: { enabled: true },
             fontSize: 14,
             lineNumbers: 'on',
             scrollBeyondLastLine: false,

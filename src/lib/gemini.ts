@@ -22,7 +22,7 @@ Provide a detailed analysis in JSON format with the following structure:
   "errors": [
     // List of potential syntax or logic errors, each with a clear explanation
   ],
-  /*"patterns": [
+  "patterns": [
     // List of identified code patterns and their implications
   ],
   "suggestions": [
@@ -38,6 +38,8 @@ For each category:
 2. Patterns: Identify common patterns and anti-patterns
 3. Suggestions: Provide actionable improvements
 4. Best Practices: Focus on language-specific conventions
+
+If the code uses imported modules (like Python's math, numpy, etc.), explain how they're being used and any best practices related to them.
 
 Keep explanations clear and beginner-friendly.`;
 

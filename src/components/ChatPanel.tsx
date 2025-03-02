@@ -16,7 +16,7 @@ interface ChatPanelProps {
 export function ChatPanel({ onSendMessage }: ChatPanelProps) {
   const [messages, setMessages] = useState<Message[]>([
     {
-      text: "👋 Hi! I'm your coding assistant. How can I help you today?",
+      text: "👋 Hi! I'm your coding assistant from Mankar College CS Department. How can I help you today?",
       isUser: false,
       timestamp: new Date(),
       type: 'text'
@@ -52,12 +52,15 @@ export function ChatPanel({ onSendMessage }: ChatPanelProps) {
 
     while ((match = codeBlockRegex.exec(text)) !== null) {
       if (match.index > lastIndex) {
-        messages.push({
-          text: text.slice(lastIndex, match.index).trim(),
-          isUser: false,
-          timestamp: new Date(),
-          type: 'text'
-        });
+        const textContent = text.slice(lastIndex, match.index).trim();
+        if (textContent) {
+          messages.push({
+            text: textContent,
+            isUser: false,
+            timestamp: new Date(),
+            type: 'text'
+          });
+        }
       }
 
       messages.push({
@@ -72,12 +75,15 @@ export function ChatPanel({ onSendMessage }: ChatPanelProps) {
     }
 
     if (lastIndex < text.length) {
-      messages.push({
-        text: text.slice(lastIndex).trim(),
-        isUser: false,
-        timestamp: new Date(),
-        type: 'text'
-      });
+      const remainingText = text.slice(lastIndex).trim();
+      if (remainingText) {
+        messages.push({
+          text: remainingText,
+          isUser: false,
+          timestamp: new Date(),
+          type: 'text'
+        });
+      }
     }
 
     return messages.filter(m => m.text);
@@ -100,10 +106,22 @@ export function ChatPanel({ onSendMessage }: ChatPanelProps) {
     try {
       const response = await onSendMessage(newMessage);
       const formattedMessages = formatMessage(response);
+      
+      if (formattedMessages.length === 0) {
+        // If no formatted messages, add the raw response as text
+        formattedMessages.push({
+          text: response,
+          isUser: false,
+          timestamp: new Date(),
+          type: 'text'
+        });
+      }
+      
       setMessages(prev => [...prev, ...formattedMessages]);
     } catch (error) {
+      console.error('Chat error:', error);
       const errorMessage = {
-        text: "I couldn't process that. Could you try again?",
+        text: "I couldn't process that. Could you try again? - Mankar College CS Assistant",
         isUser: false,
         timestamp: new Date(),
         type: 'text'
@@ -139,20 +157,20 @@ export function ChatPanel({ onSendMessage }: ChatPanelProps) {
 
   return (
     <div 
-      className={`fixed bottom-4 right-4 z-50 w-80 transition-all duration-300 ease-in-out transform ${
-        isExpanded ? 'h-[500px]' : 'h-12'
-      } sm:w-96`}
+      className={`fixed bottom-4 right-4 z-40 transition-all duration-300 ease-in-out transform ${
+        isExpanded ? 'w-80 sm:w-96 h-[450px]' : 'w-auto h-12'
+      }`}
     >
-      <div className="bg-white rounded-lg shadow-lg h-full flex flex-col overflow-hidden border border-purple-100">
+      <div className="bg-white rounded-lg shadow-lg h-full flex flex-col overflow-hidden border border-indigo-100">
         <div 
-          className="flex items-center justify-between px-4 py-3 bg-gradient-to-r from-orange-600 to-purple-600 text-white cursor-pointer select-none"
+          className="flex items-center justify-between px-4 py-3 bg-gradient-to-r from-blue-600 to-indigo-700 text-white cursor-pointer select-none"
           onClick={() => setIsExpanded(!isExpanded)}
         >
           <div className="flex items-center gap-2">
             <div className="bg-white/10 p-1.5 rounded-full">
               <MessageSquare className="h-4 w-4" />
             </div>
-            <span className="font-medium text-sm">Chat Assistant</span>
+            <span className="font-medium text-sm">Mankar College CS Assistant</span>
           </div>
           {isExpanded && (
             <button
@@ -174,7 +192,7 @@ export function ChatPanel({ onSendMessage }: ChatPanelProps) {
               className="flex-1 overflow-y-auto p-3 space-y-3 scroll-smooth"
               style={{
                 scrollbarWidth: 'thin',
-                scrollbarColor: '#E9D5FF transparent'
+                scrollbarColor: '#C7D2FE transparent'
               }}
             >
               {messages.map((message, index) => (
@@ -185,8 +203,8 @@ export function ChatPanel({ onSendMessage }: ChatPanelProps) {
                   <div
                     className={`max-w-[85%] rounded-lg p-3 shadow-sm ${
                       message.isUser
-                        ? 'bg-purple-600 text-white'
-                        : 'bg-gradient-to-br from-orange-50 to-purple-50'
+                        ? 'bg-indigo-600 text-white'
+                        : 'bg-gradient-to-br from-blue-50 to-indigo-50'
                     } ${message.type === 'code' ? 'w-full' : ''}`}
                   >
                     {renderMessage(message)}
@@ -203,7 +221,7 @@ export function ChatPanel({ onSendMessage }: ChatPanelProps) {
               ))}
               {isLoading && (
                 <div className="flex justify-start animate-fade-in">
-                  <div className="bg-gradient-to-br from-orange-50 to-purple-50 text-purple-600 rounded-lg p-2 flex items-center gap-2 shadow-sm">
+                  <div className="bg-gradient-to-br from-blue-50 to-indigo-50 text-indigo-600 rounded-lg p-2 flex items-center gap-2 shadow-sm">
                     <Loader2 className="h-4 w-4 animate-spin" />
                     <span className="text-sm">Thinking...</span>
                   </div>
@@ -212,7 +230,7 @@ export function ChatPanel({ onSendMessage }: ChatPanelProps) {
               <div ref={messagesEndRef} />
             </div>
             
-            <div className="border-t border-purple-100 p-3 bg-white">
+            <div className="border-t border-indigo-100 p-3 bg-white">
               <form 
                 onSubmit={(e) => {
                   e.preventDefault();
@@ -226,12 +244,12 @@ export function ChatPanel({ onSendMessage }: ChatPanelProps) {
                   onChange={(e) => setNewMessage(e.target.value)}
                   placeholder="Ask a question..."
                   disabled={isLoading}
-                  className="flex-1 rounded-full border border-purple-200 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 bg-white disabled:bg-gray-50 disabled:cursor-not-allowed transition-colors"
+                  className="flex-1 rounded-full border border-indigo-200 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white disabled:bg-gray-50 disabled:cursor-not-allowed transition-colors"
                 />
                 <button
                   type="submit"
                   disabled={isLoading || !newMessage.trim()}
-                  className="p-1.5 rounded-full bg-gradient-to-r from-orange-600 to-purple-600 text-white hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="p-1.5 rounded-full bg-gradient-to-r from-blue-600 to-indigo-700 text-white hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <Send className="h-4 w-4" />
                 </button>

@@ -15,17 +15,17 @@ export function FeedbackPanel({ feedback, analyzing, onAskMentor }: FeedbackPane
   return (
     <div className="bg-white/80 backdrop-blur-sm rounded-lg shadow-sm p-4">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-lg font-medium bg-gradient-to-r from-orange-600 to-purple-600 bg-clip-text text-transparent">
+        <h2 className="text-lg font-medium bg-gradient-to-r from-blue-700 to-indigo-700 bg-clip-text text-transparent">
           AI Feedback
         </h2>
         {onAskMentor && (
           <button
             onClick={onAskMentor}
             disabled={analyzing}
-            className="inline-flex items-center px-3 py-1.5 border border-purple-200 text-sm font-medium rounded-md shadow-sm text-purple-700 bg-purple-50 hover:bg-purple-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 disabled:opacity-50 transition-colors duration-200"
+            className="inline-flex items-center px-3 py-1.5 border border-indigo-200 text-sm font-medium rounded-md shadow-sm text-indigo-700 bg-indigo-50 hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 transition-colors duration-200"
           >
             <MessageSquareMore className="h-4 w-4 mr-2" />
-            Ask Guru
+            Ask Mentor
           </button>
         )}
       </div>
@@ -33,13 +33,13 @@ export function FeedbackPanel({ feedback, analyzing, onAskMentor }: FeedbackPane
         className="h-[300px] overflow-y-auto space-y-4 pr-2 scroll-smooth"
         style={{
           scrollbarWidth: 'thin',
-          scrollbarColor: '#E9D5FF transparent'
+          scrollbarColor: '#C7D2FE transparent'
         }}
       >
         {analyzing ? (
           <div className="flex items-center justify-center h-full">
             <div className="text-center">
-              <Sparkles className="h-8 w-8 text-purple-500 animate-pulse mx-auto mb-2" />
+              <Sparkles className="h-8 w- 8 text-indigo-500 animate-pulse mx-auto mb-2" />
               <p className="text-gray-500">Analyzing your code...</p>
             </div>
           </div>
@@ -104,7 +104,7 @@ export function FeedbackPanel({ feedback, analyzing, onAskMentor }: FeedbackPane
             
             {feedback.suggestions.length > 0 && (
               <div className="space-y-3">
-                <h3 className="text-purple-600 font-medium flex items-center gap-2 sticky top-0 bg-white/95 backdrop-blur-sm py-2">
+                <h3 className="text-indigo-600 font-medium flex items-center gap-2 sticky top-0 bg-white/95 backdrop-blur-sm py-2">
                   <Lightbulb className="h-4 w-4" />
                   Suggestions
                 </h3>
@@ -112,7 +112,7 @@ export function FeedbackPanel({ feedback, analyzing, onAskMentor }: FeedbackPane
                   {feedback.suggestions.map((suggestion, index) => (
                     <li 
                       key={index} 
-                      className="p-3 bg-purple-50 text-purple-700 rounded-lg border border-purple-100 hover:bg-purple-100 transition-colors duration-200 cursor-default"
+                      className="p-3 bg-indigo-50 text-indigo-700 rounded-lg border border-indigo-100 hover:bg-indigo-100 transition-colors duration-200 cursor-default"
                     >
                       {suggestion}
                     </li>
