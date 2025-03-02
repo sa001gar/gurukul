@@ -16,7 +16,7 @@ interface ChatPanelProps {
 export function ChatPanel({ onSendMessage }: ChatPanelProps) {
   const [messages, setMessages] = useState<Message[]>([
     {
-      text: "👋 Hi! I'm your coding assistant from Mankar College CS Department. How can I help you today?",
+      text: "👋 Hi! I'm your coding assistant from Department of Computer Science, Mankar College. How can I help you today?",
       isUser: false,
       timestamp: new Date(),
       type: 'text'
@@ -121,7 +121,7 @@ export function ChatPanel({ onSendMessage }: ChatPanelProps) {
     } catch (error) {
       console.error('Chat error:', error);
       const errorMessage = {
-        text: "I couldn't process that. Could you try again? - Mankar College CS Assistant",
+        text: "I couldn't process that. Could you try again? - Gurukul Assistant",
         isUser: false,
         timestamp: new Date(),
         type: 'text'
@@ -170,7 +170,7 @@ export function ChatPanel({ onSendMessage }: ChatPanelProps) {
             <div className="bg-white/10 p-1.5 rounded-full">
               <MessageSquare className="h-4 w-4" />
             </div>
-            <span className="font-medium text-sm">Mankar College CS Assistant</span>
+            <span className="font-medium text-sm">Gurukul Assistant</span>
           </div>
           {isExpanded && (
             <button

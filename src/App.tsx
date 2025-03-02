@@ -171,7 +171,7 @@ function App() {
               </div>
               <div>
                 <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-700 via-indigo-700 to-purple-700 bg-clip-text text-transparent">
-                  GURUKUL IDE
+                  Gurukul IDE
                 </h1>
                 <p className="text-sm text-gray-600">Department of Computer Science | Mankar College</p>
               </div>
@@ -417,7 +417,7 @@ plt.show()`}
                   <Code2 className="h-5 w-5 text-white" />
                 </div>
                 <span className="font-bold text-lg bg-gradient-to-r from-blue-700 to-indigo-700 bg-clip-text text-transparent">
-                  Mankar College CS IDE
+                  Gurukul IDE
                 </span>
               </div>
               <p className="text-sm text-gray-600 mb-4">

@@ -585,7 +585,7 @@ export function FullScreenIDE({
         <div className="flex items-center gap-4">
           <div>{language.charAt(0).toUpperCase() + language.slice(1)}</div>
           <div>UTF-8</div>
-          <div>Mankar College CS IDE</div>
+          <div>Gurukul IDE</div>
         </div>
       </div>
     </div>
