@@ -171,9 +171,9 @@ function App() {
               </div>
               <div>
                 <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-700 via-indigo-700 to-purple-700 bg-clip-text text-transparent">
-                  Mankar College CS IDE
+                  GURUKUL IDE
                 </h1>
-                <p className="text-sm text-gray-600">Department of Computer Science</p>
+                <p className="text-sm text-gray-600">Department of Computer Science | Mankar College</p>
               </div>
             </div>
             
@@ -241,7 +241,7 @@ function App() {
                   Start Coding
                 </button>
                 <a 
-                  href="https://github.com/mankar-college/cs-ide" 
+                  href="https://github.com/sa001gar/gurukul" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="px-6 py-3 bg-indigo-800 text-white rounded-lg font-medium shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 flex items-center"
